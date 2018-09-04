@@ -15,23 +15,24 @@ class Counter extends Component {
     }
 
     render(){
+        const { counter, onDelete, onIncrement } = this.props;
+
         return (
             <div>
                 <span className={this.getBadgeClasses()} > {this.formatCount()} </span>
                 <button
-                    onClick={() => this.props.onIncrement(this.props.counter)}
+                    onClick={() => onIncrement(counter)}
                     className="btn btn-secondary btn-sm"
                 >
                     Increment
                 </button>
                 <button
-                    onClick = {() => this.props.onDelete(this.props.counter.id)}
+                    onClick = {() => onDelete(counter.id)}
                     className = "btn btn-danger btm-sm m-2"
                 >Delete
                 </button>
             </div> );
     }
-
 }
 
 export default Counter;
