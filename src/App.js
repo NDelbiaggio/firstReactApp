@@ -27,6 +27,15 @@ class App extends Component {
     this.setState({ shoppingCard });
   };
 
+  handleOnRemove = product => {
+    let shoppingCard = [...this.state.shoppingCard];
+    let ind = shoppingCard.findIndex(transaction => {
+      return transaction.product.id === product.id;
+    });
+    shoppingCard.splice(ind, 1);
+    this.setState({ shoppingCard });
+  };
+
   getNumberItems() {
     let quantity = 0;
     this.state.shoppingCard.forEach(transaction => {
@@ -39,8 +48,14 @@ class App extends Component {
     return (
       <React.Fragment>
         <Navbar totalCounter={this.getNumberItems()} />
-        <Checkout shoppingCard={this.state.shoppingCard} />
-        <ListProducts onUpdateShoppingCard={this.handleUpdateShoppingCard} />
+        <Checkout
+          onRemove={this.handleOnRemove}
+          shoppingCard={this.state.shoppingCard}
+        />
+        <ListProducts
+          shoppingCard={this.state.shoppingCard}
+          onUpdateShoppingCard={this.handleUpdateShoppingCard}
+        />
       </React.Fragment>
     );
   }

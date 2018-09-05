@@ -44,11 +44,19 @@ class Checkout extends Component {
                   <td key={"price"}>
                     {this.getPrice(product.price, counter)} €
                   </td>
+                  <td key={"remove"}>
+                    <button
+                      onClick={() => this.props.onRemove(product)}
+                      className="btn-danger btn-sm"
+                    >
+                      Remove
+                    </button>
+                  </td>
                 </tr>
               );
             })}
           </tbody>
-          <tfoot>
+          <tfoot style={{ fontWeight: "bold" }}>
             <tr>
               <td>Total Price</td>
               <td />

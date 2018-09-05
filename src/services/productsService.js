@@ -28,6 +28,14 @@ export default function getProducts() {
           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Kiwi_%28Actinidia_chinensis%29_1_Luc_Viatour.jpg/1200px-Kiwi_%28Actinidia_chinensis%29_1_Luc_Viatour.jpg",
           "4.50",
           [new ProductTag("fruit", "blue")]
+        ),
+        new Product(
+          4,
+          "Carotte",
+          "Carrote grown in a greenhouse in Finland ",
+          "https://fr.ubergizmo.com/wp-content/uploads/2014/09/shutterstock_81146215.jpg",
+          "4.50",
+          [new ProductTag("vegetable", "green"), new ProductTag("bio", "green")]
         )
       ]);
     }, 300);

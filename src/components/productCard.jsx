@@ -7,7 +7,9 @@ class ProductCard extends Component {
   state = {};
 
   cardStyle = {
+    margin: "auto",
     width: "18rem",
+    maxWidth: "100%",
     height: "100%"
   };
 
@@ -32,10 +34,15 @@ class ProductCard extends Component {
         />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <p className="card-text">{description}</p>
+          <p style={{ height: "72px" }} className="card-text">
+            {description}
+          </p>
           <ProductTag tags={tags} />
           <h3>Price: {price}€</h3>
-          <Counter onUpdateShoppingCard={this.handleUpdateShoppingCard} />
+          <Counter
+            value={this.props.value}
+            onUpdateShoppingCard={this.handleUpdateShoppingCard}
+          />
         </div>
       </div>
     );

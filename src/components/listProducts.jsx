@@ -14,6 +14,14 @@ class ListProducts extends Component {
     products: []
   };
 
+  getProductShoppingCardCoutner(product) {
+    let trans = this.props.shoppingCard.find(trans => {
+      return trans.product.id === product.id;
+    });
+
+    return trans ? trans.counter : 0;
+  }
+
   render() {
     const { onUpdateShoppingCard } = this.props;
 
@@ -25,11 +33,16 @@ class ListProducts extends Component {
         <div className="row row-eq-height justify-content-center">
           {this.state.products.map(product => {
             return (
-              <div key={product.id} className="col-md-4">
+              <div
+                key={product.id}
+                className="col-12 col-md-6 col-lg-4"
+                style={{ marginBottom: "20px" }}
+              >
                 <ProductCard
                   onUpdateShoppingCard={onUpdateShoppingCard}
                   key={product.id}
                   product={product}
+                  value={this.getProductShoppingCardCoutner(product)}
                 />
               </div>
             );
