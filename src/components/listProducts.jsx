@@ -15,6 +15,8 @@ class ListProducts extends Component {
   };
 
   render() {
+    const { onUpdateShoppingCard } = this.props;
+
     return (
       <div
         className="container "
@@ -24,7 +26,11 @@ class ListProducts extends Component {
           {this.state.products.map(product => {
             return (
               <div key={product.id} className="col-md-4">
-                <ProductCard key={product.id} product={product} />
+                <ProductCard
+                  onUpdateShoppingCard={onUpdateShoppingCard}
+                  key={product.id}
+                  product={product}
+                />
               </div>
             );
           })}

@@ -2,61 +2,45 @@ import React, { Component } from "react";
 import "./App.css";
 
 import Navbar from "./components/navbar";
-import Counters from "./components/counters";
+import Checkout from "./components/checkout";
 
 import ListProducts from "./components/listProducts";
 
 class App extends Component {
   state = {
-    counters: [
-      { id: 1, value: 4 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 }
-    ]
+    shoppingCard: []
   };
 
-  handleDelte = counterId => {
-    let counters = this.state.counters.filter(
-      counter => counter.id !== counterId
-    );
-    this.setState({ counters });
-  };
-
-  handleIncrement = counter => {
-    const counters = [...this.state.counters];
-    let index = counters.indexOf(counter);
-    counters[index] = { ...counters[index] };
-    counters[index].value++;
-
-    this.setState({ counters });
-  };
-
-  handleReset = () => {
-    let counters = this.state.counters.map(counter => {
-      counter.value = 0;
-      return counter;
+  handleUpdateShoppingCard = (product, counter) => {
+    let shoppingCard = [...this.state.shoppingCard];
+    let ind = shoppingCard.findIndex(transaction => {
+      return transaction.product.id === product.id;
     });
-    this.setState({ counters });
+
+    if (counter === 0) {
+      shoppingCard.splice(ind, 1);
+    } else if (ind === -1) {
+      shoppingCard.push({ product, counter });
+    } else {
+      shoppingCard[ind].counter = counter;
+    }
+    this.setState({ shoppingCard });
   };
+
+  getNumberItems() {
+    let quantity = 0;
+    this.state.shoppingCard.forEach(transaction => {
+      quantity += transaction.counter;
+    });
+    return quantity;
+  }
 
   render() {
     return (
       <React.Fragment>
-        <Navbar
-          totalCounter={
-            this.state.counters.filter(counter => counter.value > 0).length
-          }
-        />
-        <main className="container">
-          <Counters
-            counters={this.state.counters}
-            onReset={this.handleReset}
-            onDelete={this.handleDelte}
-            onIncrement={this.handleIncrement}
-          />
-        </main>
-        <ListProducts />
+        <Navbar totalCounter={this.getNumberItems()} />
+        <Checkout shoppingCard={this.state.shoppingCard} />
+        <ListProducts onUpdateShoppingCard={this.handleUpdateShoppingCard} />
       </React.Fragment>
     );
   }

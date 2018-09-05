@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import ProductTag from "./productBadges";
+import Counter from "./counter";
 
 class ProductCard extends Component {
   state = {};
@@ -14,9 +15,13 @@ class ProductCard extends Component {
     height: "202px"
   };
 
+  handleUpdateShoppingCard = counter => {
+    const { product } = this.props;
+    this.props.onUpdateShoppingCard(product, counter);
+  };
+
   render() {
     const { imageSrc, name, description, price, tags } = this.props.product;
-
     return (
       <div className="card" style={this.cardStyle}>
         <img
@@ -29,7 +34,8 @@ class ProductCard extends Component {
           <h5 className="card-title">{name}</h5>
           <p className="card-text">{description}</p>
           <ProductTag tags={tags} />
-          <h3>Price: {price}</h3>
+          <h3>Price: {price}€</h3>
+          <Counter onUpdateShoppingCard={this.handleUpdateShoppingCard} />
         </div>
       </div>
     );

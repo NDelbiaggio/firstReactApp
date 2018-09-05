@@ -10,7 +10,7 @@ export default function getProducts() {
           "Banana",
           "Banana from Thailand growing with a lot of Sun",
           "https://vignette.wikia.nocookie.net/recipes/images/4/4c/Bananas.jpg/revision/latest?cb=20080516004900",
-          "3.15 €",
+          "3.15",
           [new ProductTag("fruit", "blue"), new ProductTag("bio", "green")]
         ),
         new Product(
@@ -18,7 +18,7 @@ export default function getProducts() {
           "Strawberries",
           "Strawberries from spain collected by hand and grown without products",
           "https://cdn1.medicalnewstoday.com/content/images/articles/271/271285/three-strawberries.jpg",
-          "2.30 €",
+          "2.30",
           [new ProductTag("fruit", "blue"), new ProductTag("EU", "yellow")]
         ),
         new Product(
@@ -26,7 +26,7 @@ export default function getProducts() {
           "Kiwi",
           "Amazing Kiwi directly from china, bio fruits",
           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Kiwi_%28Actinidia_chinensis%29_1_Luc_Viatour.jpg/1200px-Kiwi_%28Actinidia_chinensis%29_1_Luc_Viatour.jpg",
-          "4.50 €",
+          "4.50",
           [new ProductTag("fruit", "blue")]
         )
       ]);
